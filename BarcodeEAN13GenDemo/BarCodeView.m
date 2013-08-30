@@ -108,7 +108,6 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
 		CGContextStrokePath(c);
 	}
 }
-#warning add checksum controll logic
 -(BOOL)isValidBarCode:(NSString*)barCode
 {
    BOOL valid = NO;
@@ -117,7 +116,18 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
 		characterSetWithCharactersInString:barCode];
    if ([alphaNums isSupersetOfSet:inStringSet] && barCode.length == 13)
    {
-      valid = YES;
+//      checksum validation
+      int sum = 0;
+      for (int i = 0; i < 12; i++)
+      {
+         int m = (i % 2) == 1 ? 3 : 1;
+         int value = [barCode characterAtIndex:i] - 0x30;
+         sum += (m*value);
+      }
+      int cs = 10 - (sum % 10);
+      if (cs == 10) cs = 0;
+      valid = (cs == ([barCode characterAtIndex:12] - 0x30));
+      if (!valid) NSLog(@"%@",kInvalidText);
    }
    return valid;
 }
