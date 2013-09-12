@@ -86,7 +86,7 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
       [_bgColor set];
       CGContextFillRect(c, rect);
 
-      UIFont* font = [UIFont systemFontOfSize:20];
+      UIFont* font = [UIFont systemFontOfSize:15];
       UIColor* textColor = [UIColor redColor];
    
       NSDictionary* stringAttrs = @{ NSFontAttributeName : font,
@@ -94,20 +94,24 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
       NSAttributedString* attrStr = [[NSAttributedString alloc]
          initWithString:kInvalidText attributes:stringAttrs];
 
-      [attrStr drawAtPoint:CGPointMake(5.f, rect.size.height/2-20)];
+      [attrStr drawAtPoint:CGPointMake(3.f, rect.size.height/2-20)];
       return;
    }
 //   draw barcode
 	CGContextBeginPath(c);
-	for (int i = 0; i <= kTotlaBarCodeLength; i++)
+	for (int i = 0; i < kTotlaBarCodeLength; i++)
 	{
    
       [binaryCode[i] ? _drawableColor : _bgColor set];
-      if (i == kTotlaBarCodeLength) [_bgColor set];
 		CGContextMoveToPoint(c, i+horizontalOffest, 0.0f);
 		CGContextAddLineToPoint(c, i+horizontalOffest, self.bounds.size.height);
 		CGContextStrokePath(c);
 	}
+//   stroke the last line
+   [_bgColor set];
+   CGContextMoveToPoint(c, kTotlaBarCodeLength, 0.0f);
+   CGContextAddLineToPoint(c, kTotlaBarCodeLength, self.bounds.size.height);
+   CGContextStrokePath(c);
 }
 -(BOOL)isValidBarCode:(NSString*)barCode
 {
