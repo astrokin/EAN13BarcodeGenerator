@@ -99,10 +99,11 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
    }
 //   draw barcode
 	CGContextBeginPath(c);
-	for (int i = 0; i < kTotlaBarCodeLength; i++)
+	for (int i = 0; i <= kTotlaBarCodeLength; i++)
 	{
    
       [binaryCode[i] ? _drawableColor : _bgColor set];
+      if (i == kTotlaBarCodeLength) [_bgColor set];
 		CGContextMoveToPoint(c, i+horizontalOffest, 0.0f);
 		CGContextAddLineToPoint(c, i+horizontalOffest, self.bounds.size.height);
 		CGContextStrokePath(c);

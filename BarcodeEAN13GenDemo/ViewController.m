@@ -28,7 +28,7 @@ static inline NSString *GetNewRandomEAN13BarCode()
 }
 
 static const CGRect kLabelFrame = {{0.0, 0.0},{320.0, 30.0}};
-static const CGRect kBarCodeFrame = {{85.0, 35.0},{150.0, 100.0}};
+static const CGRect kBarCodeFrame = {{103.0, 35.0},{113.0, 100.0}};
 static const CGRect kButtonFrame = {{85.0, 200.0},{150.0, 30.0}};
 static const CGRect kTextFieldFrame = {{60.0, 150.0},{200.0, 30.0}};
 
