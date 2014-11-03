@@ -27,10 +27,10 @@ static inline NSString *GetNewRandomEAN13BarCode()
    return result;
 }
 
-static const CGRect kLabelFrame = {{0.0, 0.0},{320.0, 30.0}};
-static const CGRect kBarCodeFrame = {{103.0, 35.0},{113.0, 100.0}};
-static const CGRect kButtonFrame = {{85.0, 200.0},{150.0, 30.0}};
-static const CGRect kTextFieldFrame = {{60.0, 150.0},{200.0, 30.0}};
+static const CGRect kLabelFrame = {{0.0, 20.0},{320.0, 30.0}};
+static const CGRect kBarCodeFrame = {{103.0, 55.0},{113.0, 100.0}};
+static const CGRect kButtonFrame = {{85.0, 220.0},{150.0, 30.0}};
+static const CGRect kTextFieldFrame = {{60.0, 170.0},{200.0, 30.0}};
 
 @interface ViewController () <UITextFieldDelegate>
 {
@@ -46,7 +46,7 @@ static const CGRect kTextFieldFrame = {{60.0, 150.0},{200.0, 30.0}};
 {
    CGFloat h =  [UIApplication sharedApplication].statusBarHidden ? 0 :
       [UIApplication sharedApplication].statusBarFrame.size.height;
-   UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0,
+   UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, h,
       [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - h)];
    view.backgroundColor = [UIColor lightGrayColor];
    

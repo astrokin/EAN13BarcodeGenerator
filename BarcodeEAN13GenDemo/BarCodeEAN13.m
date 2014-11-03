@@ -1,13 +1,12 @@
 //
-//  BarcodeEAN13.h
+//  BarcodeEAN13.m
 //  BarcodeEAN13GenDemo
 //
 //  Created by Strokin Alexey on 8/27/13. Assist Eugene Hermann
 //  Copyright (c) 2013 Strokin Alexey. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "BarCodeEAN13.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 

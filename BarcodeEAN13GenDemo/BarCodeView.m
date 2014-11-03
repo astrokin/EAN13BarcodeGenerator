@@ -13,7 +13,7 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
 
 #import "BarCodeView.h"
 #import "AppDelegate.h"
-
+#import "BarCodeEAN13.h"
 
 @interface BarCodeView ()
 {

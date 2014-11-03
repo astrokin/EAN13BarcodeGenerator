@@ -42,6 +42,7 @@
 		C03353D817CD12B8000FED96 /* BarCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarCodeView.m; sourceTree = "<group>"; };
 		C03353D917CD12B8000FED96 /* BarCodeEAN13.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarCodeEAN13.m; sourceTree = "<group>"; };
 		C0559C6517D0B6A100EA8A15 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C0B074E71A07773B00B2290F /* BarCodeEAN13.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarCodeEAN13.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +97,7 @@
 				C03353CB17CD113F000FED96 /* ViewController.m */,
 				C03353D717CD12B8000FED96 /* BarCodeView.h */,
 				C03353D817CD12B8000FED96 /* BarCodeView.m */,
+				C0B074E71A07773B00B2290F /* BarCodeEAN13.h */,
 				C03353D917CD12B8000FED96 /* BarCodeEAN13.m */,
 				C03353B917CD113F000FED96 /* Supporting Files */,
 			);
@@ -262,6 +264,7 @@
 		C03353D317CD113F000FED96 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BarcodeEAN13GenDemo/BarcodeEAN13GenDemo-Prefix.pch";
 				INFOPLIST_FILE = "BarcodeEAN13GenDemo/BarcodeEAN13GenDemo-Info.plist";
@@ -274,6 +277,7 @@
 		C03353D417CD113F000FED96 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BarcodeEAN13GenDemo/BarcodeEAN13GenDemo-Prefix.pch";
 				INFOPLIST_FILE = "BarcodeEAN13GenDemo/BarcodeEAN13GenDemo-Info.plist";
