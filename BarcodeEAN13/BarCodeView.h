@@ -10,7 +10,7 @@
 
 @interface BarCodeView : UIView
 
-@property (nonatomic, strong) NSString * barCodeNumber;
+@property (nonatomic, strong) NSString * barCode;
 
 @property (nonatomic, strong) UIColor * drawableColor; //default black
 @property (nonatomic, strong) UIColor *bgColor; // default white

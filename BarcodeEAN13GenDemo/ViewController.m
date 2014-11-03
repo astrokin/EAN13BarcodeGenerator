@@ -86,7 +86,7 @@ static const CGRect kTextFieldFrame = {{60.0, 170.0},{200.0, 30.0}};
 
 - (void)setNumber:(NSString*)newNum
 {
-   [barCodeView setBarCodeNumber:newNum];
+   [barCodeView setBarCode:newNum];
 }
 
 - (void)didReceiveMemoryWarning

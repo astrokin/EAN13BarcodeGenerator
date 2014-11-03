@@ -57,15 +57,15 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
    }
    return self;
 }
--(void)setBarCodeNumber:(NSString *)newBarCodeNumber
+-(void)setbarCode:(NSString *)newbarCode
 {
-   if (newBarCodeNumber != _barCodeNumber)
+   if (newbarCode != _barCode)
    {
-      _barCodeNumber = newBarCodeNumber;
-		validBarCode = [self isValidBarCode:_barCodeNumber];
+      _barCode = newbarCode;
+		validBarCode = [self isValidBarCode:_barCode];
       if (validBarCode)
       {
-			CalculateBarCodeEAN13(_barCodeNumber, binaryCode);
+			CalculateBarCodeEAN13(_barCode, binaryCode);
          [self updateLables];
          [self setNeedsDisplay];
       }
@@ -182,19 +182,19 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
 }
 -(NSString*)firstDigitOfBarCode
 {
-   return [self.barCodeNumber substringToIndex:1];
+   return [self.barCode substringToIndex:1];
 }
 -(NSString*)manufactureCode
 {
-   return [self.barCodeNumber substringWithRange:NSMakeRange(1, 6)];
+   return [self.barCode substringWithRange:NSMakeRange(1, 6)];
 }
 -(NSString*)productCode
 {
-   return [self.barCodeNumber substringWithRange:NSMakeRange(7, 5)];
+   return [self.barCode substringWithRange:NSMakeRange(7, 5)];
 }
 - (NSString *)checkSum
 {
-   return [_barCodeNumber substringWithRange:NSMakeRange(12, 1)];
+   return [_barCode substringWithRange:NSMakeRange(12, 1)];
 }
 -(void)setShouldShowNumbers:(BOOL)shouldShowNumbers
 {
