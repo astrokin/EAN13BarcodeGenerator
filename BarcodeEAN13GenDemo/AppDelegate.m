@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 
 #import "ViewController.h"
+#import "ViewControllerWithXib.h"
+
+#define USE_XIB 0
 
 @implementation AppDelegate
 
@@ -16,9 +19,15 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-   self.viewController = [ViewController new];
-   self.window.rootViewController = self.viewController;
+#if defined USE_XIB
+    self.viewController = [[ViewControllerWithXib alloc] initWithNibName:NSStringFromClass([ViewControllerWithXib class]) bundle:[NSBundle mainBundle]];
+    self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+#else
+    self.viewController = [ViewController new];
+    self.window.rootViewController = self.viewController;
+    [self.window makeKeyAndVisible];
+#endif
     return YES;
 }
 

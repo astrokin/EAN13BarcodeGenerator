@@ -10,23 +10,6 @@
 #import "BarCodeView.h"
 #import <QuartzCore/QuartzCore.h>
 
-static inline NSString *GetNewRandomEAN13BarCode()
-{
-   NSString *result = @"";
-   int sum = 0;
-   for (int i = 12; i >= 1; i--)
-   {
-      int m = (i % 2) == 1 ? 3 : 1;
-      int value = arc4random() % 10;
-      sum += (m*value);
-      result = [result stringByAppendingFormat:@"%i", value];
-   }
-   int cs = 10 - (sum % 10);
-   result = [result stringByAppendingFormat:@"%i", cs == 10 ? 0 : cs];
-   NSLog(@"Generated barcode: %@", result);
-   return result;
-}
-
 static const CGRect kLabelFrame = {{0.0, 20.0},{320.0, 30.0}};
 static const CGRect kBarCodeFrame = {{103.0, 55.0},{113.0, 100.0}};
 static const CGRect kButtonFrame = {{85.0, 220.0},{150.0, 30.0}};
@@ -103,7 +86,7 @@ static const CGRect kTextFieldFrame = {{60.0, 170.0},{200.0, 30.0}};
    }
    else if (textField.text.length > 0)
    {
-      [self lockAnimationForView:textField];
+       lockAnimationForView(textField);
       return;
    }
    [self setNumber:GetNewRandomEAN13BarCode()];
@@ -111,27 +94,18 @@ static const CGRect kTextFieldFrame = {{60.0, 170.0},{200.0, 30.0}};
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textField:(UITextField *)aTextField shouldChangeCharactersInRange:(NSRange)range
-   replacementString:(NSString *)string
+replacementString:(NSString *)string
 {
-   if ([string isEqualToString:@"."]) return NO;
-   NSString *result = [aTextField.text stringByAppendingString:string];
-   return result.length <= 13;
+    if ([string isEqualToString:@"\u200B"] || [string isEqualToString:@""])
+    {
+        return YES; // detect backspase/delete
+    }
+    
+    NSCharacterSet *set = [NSCharacterSet decimalDigitCharacterSet];
+    if ([string rangeOfCharacterFromSet:set].location == NSNotFound)  return NO; //disallow any other except digits
+    
+    NSString *result = [aTextField.text stringByAppendingString:string];
+    return result.length <= 13;
 }
 
--(void)lockAnimationForView:(UIView*)view
-{
-   CALayer *lbl = [view layer];
-   CGPoint posLbl = [lbl position];
-   CGPoint y = CGPointMake(posLbl.x-10, posLbl.y);
-   CGPoint x = CGPointMake(posLbl.x+10, posLbl.y);
-   CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"position"];
-   [animation setTimingFunction:[CAMediaTimingFunction
-      functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-   [animation setFromValue:[NSValue valueWithCGPoint:x]];
-   [animation setToValue:[NSValue valueWithCGPoint:y]];
-   [animation setAutoreverses:YES];
-   [animation setDuration:0.08];
-   [animation setRepeatCount:3];
-   [lbl addAnimation:animation forKey:nil];
-}
 @end

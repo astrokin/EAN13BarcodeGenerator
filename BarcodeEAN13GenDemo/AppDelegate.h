@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-
 static inline UIColor *GetRandomUIColor()
 {
    CGFloat r = arc4random() % 255;
@@ -28,12 +27,27 @@ static inline void DebugViewBorder(UIView *view)
 #endif
 }
 
-@class ViewController;
+static inline void lockAnimationForView(UIView * view)
+{
+    CALayer *lbl = [view layer];
+    CGPoint posLbl = [lbl position];
+    CGPoint y = CGPointMake(posLbl.x-10, posLbl.y);
+    CGPoint x = CGPointMake(posLbl.x+10, posLbl.y);
+    CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    [animation setTimingFunction:[CAMediaTimingFunction
+                                  functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [animation setFromValue:[NSValue valueWithCGPoint:x]];
+    [animation setToValue:[NSValue valueWithCGPoint:y]];
+    [animation setAutoreverses:YES];
+    [animation setDuration:0.08];
+    [animation setRepeatCount:3];
+    [lbl addAnimation:animation forKey:nil];
+}
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) ViewController *viewController;
+@property (strong, nonatomic) UIViewController *viewController;
 
 @end

@@ -50,14 +50,24 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
    self = [super initWithFrame:frame];
    if (self != nil)
    {
-      _bgColor = [UIColor whiteColor];
-      _drawableColor = [UIColor blackColor];
-      horizontalOffest = (frame.size.width-kTotlaBarCodeLength)/2;
-      [self createNumberLabels];
+       [self commonInit];
    }
    return self;
 }
--(void)setbarCode:(NSString *)newbarCode
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
+    NSAssert(self.frame.size.width >= kTotlaBarCodeLength, @"Incorrect BarCodeView frame.size.width!");
+    [self commonInit];
+}
+-(void)commonInit
+{
+    _bgColor = [UIColor whiteColor];
+    _drawableColor = [UIColor blackColor];
+    horizontalOffest = (self.frame.size.width-kTotlaBarCodeLength)/2;
+    [self createNumberLabels];
+}
+-(void)setBarCode:(NSString *)newbarCode
 {
    if (newbarCode != _barCode)
    {

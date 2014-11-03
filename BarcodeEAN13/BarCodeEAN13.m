@@ -162,5 +162,20 @@ void CalculateBarCodeEAN13(NSString *barCodeString, BOOL *buffer)
 	free(barCode);
 }
 
-
+NSString *GetNewRandomEAN13BarCode()
+{
+    NSString *result = @"";
+    int sum = 0;
+    for (int i = 12; i >= 1; i--)
+    {
+        int m = (i % 2) == 1 ? 3 : 1;
+        int value = arc4random() % 10;
+        sum += (m*value);
+        result = [result stringByAppendingFormat:@"%i", value];
+    }
+    int cs = 10 - (sum % 10);
+    result = [result stringByAppendingFormat:@"%i", cs == 10 ? 0 : cs];
+    NSLog(@"Generated barcode: %@", result);
+    return result;
+}
 
