@@ -17,9 +17,9 @@
 		C03353C717CD113F000FED96 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C03353C617CD113F000FED96 /* Default@2x.png */; };
 		C03353C917CD113F000FED96 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C03353C817CD113F000FED96 /* Default-568h@2x.png */; };
 		C03353CC17CD113F000FED96 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03353CB17CD113F000FED96 /* ViewController.m */; };
-		C03353DB17CD12B8000FED96 /* BarCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C03353D817CD12B8000FED96 /* BarCodeView.m */; };
-		C0559C6417D0AB1300EA8A15 /* BarCodeEAN13.m in Sources */ = {isa = PBXBuildFile; fileRef = C03353D917CD12B8000FED96 /* BarCodeEAN13.m */; };
 		C0559C6617D0B6A100EA8A15 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0559C6517D0B6A100EA8A15 /* QuartzCore.framework */; };
+		C0B074ED1A07793700B2290F /* BarCodeEAN13.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B074EA1A07793700B2290F /* BarCodeEAN13.m */; };
+		C0B074EE1A07793700B2290F /* BarCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B074EC1A07793700B2290F /* BarCodeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,11 +38,11 @@
 		C03353C817CD113F000FED96 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C03353CA17CD113F000FED96 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		C03353CB17CD113F000FED96 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		C03353D717CD12B8000FED96 /* BarCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarCodeView.h; sourceTree = "<group>"; };
-		C03353D817CD12B8000FED96 /* BarCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarCodeView.m; sourceTree = "<group>"; };
-		C03353D917CD12B8000FED96 /* BarCodeEAN13.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarCodeEAN13.m; sourceTree = "<group>"; };
 		C0559C6517D0B6A100EA8A15 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		C0B074E71A07773B00B2290F /* BarCodeEAN13.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarCodeEAN13.h; sourceTree = "<group>"; };
+		C0B074E91A07793700B2290F /* BarCodeEAN13.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarCodeEAN13.h; sourceTree = "<group>"; };
+		C0B074EA1A07793700B2290F /* BarCodeEAN13.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarCodeEAN13.m; sourceTree = "<group>"; };
+		C0B074EB1A07793700B2290F /* BarCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarCodeView.h; sourceTree = "<group>"; };
+		C0B074EC1A07793700B2290F /* BarCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarCodeView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +63,7 @@
 		C03353A617CD113F000FED96 = {
 			isa = PBXGroup;
 			children = (
+				C0B074E81A07793700B2290F /* BarcodeEAN13 */,
 				C03353B817CD113F000FED96 /* BarcodeEAN13GenDemo */,
 				C03353B117CD113F000FED96 /* Frameworks */,
 				C03353B017CD113F000FED96 /* Products */,
@@ -95,10 +96,6 @@
 				C03353C217CD113F000FED96 /* AppDelegate.m */,
 				C03353CA17CD113F000FED96 /* ViewController.h */,
 				C03353CB17CD113F000FED96 /* ViewController.m */,
-				C03353D717CD12B8000FED96 /* BarCodeView.h */,
-				C03353D817CD12B8000FED96 /* BarCodeView.m */,
-				C0B074E71A07773B00B2290F /* BarCodeEAN13.h */,
-				C03353D917CD12B8000FED96 /* BarCodeEAN13.m */,
 				C03353B917CD113F000FED96 /* Supporting Files */,
 			);
 			path = BarcodeEAN13GenDemo;
@@ -116,6 +113,17 @@
 				C03353C817CD113F000FED96 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C0B074E81A07793700B2290F /* BarcodeEAN13 */ = {
+			isa = PBXGroup;
+			children = (
+				C0B074E91A07793700B2290F /* BarCodeEAN13.h */,
+				C0B074EA1A07793700B2290F /* BarCodeEAN13.m */,
+				C0B074EB1A07793700B2290F /* BarCodeView.h */,
+				C0B074EC1A07793700B2290F /* BarCodeView.m */,
+			);
+			path = BarcodeEAN13;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,11 +191,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0559C6417D0AB1300EA8A15 /* BarCodeEAN13.m in Sources */,
 				C03353BF17CD113F000FED96 /* main.m in Sources */,
+				C0B074EE1A07793700B2290F /* BarCodeView.m in Sources */,
+				C0B074ED1A07793700B2290F /* BarCodeEAN13.m in Sources */,
 				C03353C317CD113F000FED96 /* AppDelegate.m in Sources */,
 				C03353CC17CD113F000FED96 /* ViewController.m in Sources */,
-				C03353DB17CD12B8000FED96 /* BarCodeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
