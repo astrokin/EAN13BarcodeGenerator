@@ -3,7 +3,7 @@ EAN13BarcodeGenerator
 
 Simple and performance solution to generate EAN13 barcode for iOS applications
 
-![alt tag](screen.png)
+![alt tag](BarcodeEAN13GenDemo / Screen.png)
 
 If you need any additional functionality please contact me.
 
