@@ -13,11 +13,15 @@
 
 @property (strong, nonatomic) IBOutlet BarCodeView *barcodeView;
 @property (strong, nonatomic) IBOutlet UITextField *textField;
+@property (strong, nonatomic) IBOutlet UISlider *sliderForScale;
 
 
 @end
 
 @implementation ViewControllerWithXib
+- (IBAction)applyScale:(UISlider *)sender {
+    _barcodeView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f/sender.value, 1.0f/sender.value);
+}
 
 - (IBAction)generateAction:(id)sender {
     if (_textField.text.length == 13)
