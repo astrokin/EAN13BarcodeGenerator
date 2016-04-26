@@ -1,6 +1,5 @@
 //
 //  BarcodeEAN13.m
-//  BarcodeEAN13GenDemo
 //
 //  Created by Strokin Alexey on 8/27/13. Assist Eugene Hermann
 //  Copyright (c) 2013 Strokin Alexey. All rights reserved.
@@ -29,7 +28,7 @@ do\
 #pragma clang diagnostic ignored "-Wduplicate-decl-specifier"
 
 
-static const int kBarCodeLength = 12;
+static const NSUInteger kBarCodeLength = 12;
 
 static const BOOL const bQuiteZone[] = {0,0,0,0,0,0,0,0,0};
 
@@ -66,16 +65,16 @@ static const BOOL const bParity[10][5] = {
 ////////////////////////////////////////////////////////////////////////////////
 
 
-static BOOL* FillManufactureCode(BOOL *dst, int *code)
+static BOOL* FillManufactureCode(BOOL *dst, NSInteger *code)
 {
 //	DLog(@"");
-	const int manufacturePos = 2;
-	const int manufactureLen = 5;
-	int firstDigit = code[0];
-	int pos = manufacturePos;
-	for (int i = 0; i < manufactureLen; i++, pos++)
+	const NSInteger manufacturePos = 2;
+	const NSInteger manufactureLen = 5;
+	NSInteger firstDigit = code[0];
+	NSInteger pos = manufacturePos;
+	for (NSInteger i = 0; i < manufactureLen; i++, pos++)
 	{
-		int num = code[pos];
+		NSInteger num = code[pos];
 		Parity parity = (bParity[firstDigit][i] == 0) ? Odd : Even;
 		BOOL *bin;
 		if (parity == Odd)
@@ -91,45 +90,45 @@ static BOOL* FillManufactureCode(BOOL *dst, int *code)
 	return dst;
 }
 
-static BOOL *FillProductCode(BOOL *dst, int *barCode)
+static BOOL *FillProductCode(BOOL *dst, NSInteger *barCode)
 {
-	const int productPos = 7;
-	const int productLen = 5;
-	int codePos = productPos;
-	for (int i = 0; i < productLen; i++, codePos++)
+	const NSInteger productPos = 7;
+	const NSInteger productLen = 5;
+	NSInteger codePos = productPos;
+	for (NSInteger i = 0; i < productLen; i++, codePos++)
 	{
-		int num = barCode[codePos];
+		NSInteger num = barCode[codePos];
 		BOOL *bin = (BOOL *)bRight[num];
 		ShiftCopyBoolArray(dst, bin, 7);
 	}
 	return dst;
 }
 
-static BOOL *FillCheckSumm(BOOL *dst, int *barCode)
+static BOOL *FillCheckSumm(BOOL *dst, NSInteger *barCode)
 {
-	int sum = 0;
-	for (int pos = 0; pos < 12; pos ++)
+	NSInteger sum = 0;
+	for (NSUInteger pos = 0; pos < kBarCodeLength; pos ++)
 	{
-		int num = barCode[pos];
-		int factor = ((pos % 2 == 0) ? 1 : 3);
+		NSInteger num = barCode[pos];
+		NSInteger factor = ((pos % 2 == 0) ? 1 : 3);
 		sum += num * factor;
 	}
-	int ost = sum % 10;
-	int result = (10 - ost) % 10;
+	NSInteger ost = sum % 10;
+	NSInteger result = (10 - ost) % 10;
 	BOOL *bin = (BOOL *)bRight[result];
 	ShiftCopyBoolArray(dst, bin, 7);
 	return dst;
 }
 
-static int* InitializeBarCode(NSString *barCodeString)
+static NSInteger* InitializeBarCode(NSString *barCodeString)
 {
-	int *barCode = calloc(kBarCodeLength, sizeof(int));
+	NSInteger *barCode = calloc(kBarCodeLength, sizeof(NSInteger));
 	size_t barLength = barCodeString.length;
-	barLength = MIN(barLength, 12);
+	barLength = MIN(barLength, kBarCodeLength);
 	unichar *stringBuf = calloc(barLength, sizeof(unichar));
 	NSRange range = {0, barLength};
 	[barCodeString getCharacters:stringBuf range:range];
-	for (int i = 0; i < barLength; i++)
+	for (NSUInteger i = 0; i < barLength; i++)
 	{
 		barCode[i] = stringBuf[i] - 0x30;
 		if (barCode[i] < 0 || barCode[i] > 9)
@@ -146,11 +145,11 @@ static int* InitializeBarCode(NSString *barCodeString)
 
 void CalculateBarCodeEAN13(NSString *barCodeString, BOOL *buffer)
 {
-	int *barCode = InitializeBarCode(barCodeString);
+	NSInteger *barCode = InitializeBarCode(barCodeString);
    BOOL *bp = buffer;
 	ShiftCopyBoolArray(bp, bQuiteZone, 9);
 	ShiftCopyBoolArray(bp, bLeadTrailer, 3);
-	int countryCode = barCode[1];
+	NSInteger countryCode = barCode[1];
 	ShiftCopyBoolArray(bp, bOddLeft[countryCode], 7);
 	bp = FillManufactureCode(bp, barCode);
 	ShiftCopyBoolArray(bp, bSeporator, 5);
@@ -162,19 +161,19 @@ void CalculateBarCodeEAN13(NSString *barCodeString, BOOL *buffer)
 	free(barCode);
 }
 
-NSString *GetNewRandomEAN13BarCode()
+NSString *GetNewRandomEAN13BarCode(void)
 {
     NSString *result = @"";
-    int sum = 0;
-    for (int i = 12; i >= 1; i--)
+    NSInteger sum = 0;
+    for (NSInteger i = 12; i >= 1; i--)
     {
-        int m = (i % 2) == 1 ? 3 : 1;
-        int value = arc4random() % 10;
+        NSInteger m = (i % 2) == 1 ? 3 : 1;
+        NSInteger value = arc4random() % 10;
         sum += (m*value);
-        result = [result stringByAppendingFormat:@"%i", value];
+        result = [result stringByAppendingFormat:@"%li", (long)value];
     }
-    int cs = 10 - (sum % 10);
-    result = [result stringByAppendingFormat:@"%i", cs == 10 ? 0 : cs];
+    NSInteger cs = 10 - (sum % 10);
+    result = [result stringByAppendingFormat:@"%li", (long)(cs == 10 ? 0 : cs)];
     NSLog(@"Generated barcode: %@", result);
     return result;
 }

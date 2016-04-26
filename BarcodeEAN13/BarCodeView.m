@@ -6,17 +6,15 @@
 //  Copyright (c) 2013 Strokin Alexey. All rights reserved.
 //
 
+#import "BarCodeView.h"
+#import "BarCodeEAN13.h"
+
 static NSString *kInvalidText = @"Invalid barcode!";
 
 static const CGFloat kDigitLabelHeight = 15.0f;
 static const NSInteger kTotlaBarCodeLength = 113; //never change this
 
-#import "BarCodeView.h"
-#import "AppDelegate.h"
-#import "BarCodeEAN13.h"
-
-@interface BarCodeView ()
-{
+@interface BarCodeView () {
    CGFloat horizontalOffest;
 
 	BOOL binaryCode[kTotlaBarCodeLength];
@@ -109,7 +107,7 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
    }
 //   draw barcode
 	CGContextBeginPath(c);
-	for (int i = 0; i < kTotlaBarCodeLength; i++)
+	for (NSInteger i = 0; i < kTotlaBarCodeLength; i++)
 	{
    
       [binaryCode[i] ? _drawableColor : _bgColor set];
@@ -132,14 +130,14 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
    if ([alphaNums isSupersetOfSet:inStringSet] && barCode.length == 13)
    {
 //      checksum validation
-      int sum = 0;
-      for (int i = 0; i < 12; i++)
+      NSInteger sum = 0;
+      for (NSUInteger i = 0; i < 12; i++)
       {
-         int m = (i % 2) == 1 ? 3 : 1;
-         int value = [barCode characterAtIndex:i] - 0x30;
+         NSUInteger m = (i % 2) == 1 ? 3 : 1;
+         NSUInteger value = [barCode characterAtIndex:i] - 0x30;
          sum += (m*value);
       }
-      int cs = 10 - (sum % 10);
+      NSInteger cs = 10 - (sum % 10);
       if (cs == 10) cs = 0;
       valid = (cs == ([barCode characterAtIndex:12] - 0x30));
       if (!valid) NSLog(@"%@",kInvalidText);
@@ -208,6 +206,7 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
 }
 -(void)setShouldShowNumbers:(BOOL)shouldShowNumbers
 {
+    _shouldShowNumbers = shouldShowNumbers;
    for (UILabel *label in self.subviews)
    {
       if ([label isKindOfClass:[UILabel class]]) label.hidden = !shouldShowNumbers;

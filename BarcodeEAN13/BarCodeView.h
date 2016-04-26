@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BarCodeEAN13.h"
 
 @interface BarCodeView : UIView
 
