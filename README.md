@@ -10,6 +10,7 @@ How to use
 
 ```Objective-C
 #import "BarCodeView.h"
+#import "BarCodeEAN13.h"
 
   BarCodeView *barCodeView = [[BarCodeView alloc] initWithFrame:kBarCodeFrame];
   [self.view addSubview:barCodeView];
