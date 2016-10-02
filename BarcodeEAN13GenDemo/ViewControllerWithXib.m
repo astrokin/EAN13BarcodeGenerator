@@ -8,6 +8,7 @@
 
 #import "ViewControllerWithXib.h"
 #import "BarCodeView.h"
+#import "BarCodeEAN13.h"
 
 @interface ViewControllerWithXib ()
 

@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "BarCodeView.h"
+#import "BarCodeEAN13.h"
 #import <QuartzCore/QuartzCore.h>
 
 static const CGRect kLabelFrame = {{0.0, 20.0},{320.0, 30.0}};

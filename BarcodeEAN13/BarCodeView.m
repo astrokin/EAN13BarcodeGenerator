@@ -11,7 +11,7 @@
 
 static NSString *kInvalidText = @"Invalid barcode!";
 
-static const CGFloat kDigitLabelHeight = 15.0f;
+static const CGFloat kDigitLabelHeight = 14.0f;
 static const NSInteger kTotlaBarCodeLength = 113; //never change this
 
 @interface BarCodeView () {
@@ -107,6 +107,7 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
    }
 //   draw barcode
 	CGContextBeginPath(c);
+    CGContextSetLineWidth(c, UIScreen.mainScreen.scale);
 	for (NSInteger i = 0; i < kTotlaBarCodeLength; i++)
 	{
    

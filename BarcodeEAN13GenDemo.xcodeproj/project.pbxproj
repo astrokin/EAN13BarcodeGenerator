@@ -287,6 +287,7 @@
 				GCC_PREFIX_HEADER = "BarcodeEAN13GenDemo/BarcodeEAN13GenDemo-Prefix.pch";
 				INFOPLIST_FILE = "BarcodeEAN13GenDemo/BarcodeEAN13GenDemo-Info.plist";
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.barcode.ean13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -299,6 +300,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BarcodeEAN13GenDemo/BarcodeEAN13GenDemo-Prefix.pch";
 				INFOPLIST_FILE = "BarcodeEAN13GenDemo/BarcodeEAN13GenDemo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.barcode.ean13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
