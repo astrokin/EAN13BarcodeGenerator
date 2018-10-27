@@ -23,6 +23,14 @@ BarCodeView *barCodeView = [[BarCodeView alloc] initWithFrame:kBarCodeFrame];
 
 ```
 
+```Swift
+import EAN13BarcodeGenerator
+
+let barCodeView = BarCodeView(frame: CGRect(x: 103.0, y: 155.0, width: 113.0, height: 100.0))
+view.addSubview(barCodeView)
+barCodeView.barCode = GetNewRandomEAN13BarCode()
+```
+
 If you need any additional functionality please contact me.
 
 If you have any questions don't hesitate to contact me.
