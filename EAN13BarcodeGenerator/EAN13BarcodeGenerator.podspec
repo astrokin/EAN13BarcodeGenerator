@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'EAN13BarcodeGenerator'
   s.version          = '0.1.0'
-  s.summary          = 'Simple and performance solution to generate EAN13 barcode for iOS applications'
+  s.summary          = 'The easiest way to generate and show EAN13 barcode'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
