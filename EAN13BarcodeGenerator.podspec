@@ -30,7 +30,7 @@ Simple and performance solution to generate EAN13 barcode for iOS applications
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'EAN13BarcodeGenerator/Classes/**/*'
+  s.source_files = 'EAN13BarcodeGenerator/EAN13BarcodeGenerator/Classes/**/*'
   s.frameworks = 'UIKit'
   
   # s.resource_bundles = {
