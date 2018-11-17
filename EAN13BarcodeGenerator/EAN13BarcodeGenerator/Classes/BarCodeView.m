@@ -15,8 +15,6 @@ static const CGFloat kDigitLabelHeight = 14.0f;
 static const NSInteger kTotlaBarCodeLength = 113; //never change this
 
 @interface BarCodeView () {
-   CGFloat horizontalOffest;
-
    BOOL binaryCode[kTotlaBarCodeLength];
    BOOL validBarCode;
    
@@ -61,7 +59,6 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
 {
     _bgColor = [UIColor whiteColor];
     _drawableColor = [UIColor blackColor];
-    horizontalOffest = (self.frame.size.width-kTotlaBarCodeLength)/2;
     [self createNumberLabels];
 }
 -(void)setBarCode:(NSString *)newbarCode
@@ -110,8 +107,8 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
 	for (NSInteger i = 0; i < kTotlaBarCodeLength; i++)
 	{
         [binaryCode[i] ? _drawableColor : _bgColor set];
-		CGContextMoveToPoint(context, i+horizontalOffest, 0.0f);
-		CGContextAddLineToPoint(context, i+horizontalOffest, rect.size.height);
+		CGContextMoveToPoint(context, i, 0.0f);
+		CGContextAddLineToPoint(context, i, rect.size.height);
 		CGContextStrokePath(context);
 	}
 //   stroke the last line
@@ -155,11 +152,11 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
 {
 // smoke UI label for better visability
    CGFloat smokeHeight = 6.0f;
-   UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(horizontalOffest, self.bounds.size.height-smokeHeight, kTotlaBarCodeLength-1, smokeHeight)];
+   UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, self.bounds.size.height-smokeHeight, kTotlaBarCodeLength-1, smokeHeight)];
    l.backgroundColor = _bgColor;
    [self addSubview:l];
 //   
-   CGFloat offset = horizontalOffest;
+   CGFloat offset = 0.0f;
    CGFloat labelWidth = 7.0f;
    firstDigitLabel = [self labelWithWidth:labelWidth andOffset:offset andValue:[self firstDigitOfBarCode]];
    [self addSubview:firstDigitLabel];
