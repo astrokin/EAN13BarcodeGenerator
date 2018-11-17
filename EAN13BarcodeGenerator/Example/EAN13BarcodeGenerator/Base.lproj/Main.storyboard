@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4Df-p1-hxN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4Df-p1-hxN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -137,11 +137,11 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVS-ig-kmI" customClass="BarCodeView">
-                                <rect key="frame" x="131" y="149" width="113" height="100"/>
+                                <rect key="frame" x="62.5" y="149" width="250" height="100"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="NYr-yF-GRo"/>
-                                    <constraint firstAttribute="width" constant="113" id="Z7W-Y4-qo3"/>
+                                    <constraint firstAttribute="width" constant="250" id="Z7W-Y4-qo3"/>
                                 </constraints>
                             </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="Wjr-ad-OJk">
@@ -161,12 +161,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert"/>
                             </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IWY-6c-WQm">
+                                <rect key="frame" x="163" y="375" width="51" height="31"/>
+                                <connections>
+                                    <action selector="showNumbersValueChanged:" destination="aw9-QY-6pn" eventType="valueChanged" id="oRr-NN-aOd"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="0.66666668650000005" green="0.66666668650000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="h8j-Cg-5t6" firstAttribute="centerX" secondItem="xyL-bh-JDo" secondAttribute="centerX" id="0Eh-GQ-11I"/>
                             <constraint firstAttribute="trailing" secondItem="GNr-gU-SXI" secondAttribute="trailing" constant="8" id="0SF-r3-DiH"/>
                             <constraint firstAttribute="centerX" secondItem="dVS-ig-kmI" secondAttribute="centerX" id="5l7-C4-7NY"/>
+                            <constraint firstItem="IWY-6c-WQm" firstAttribute="centerX" secondItem="Wjr-ad-OJk" secondAttribute="centerX" id="75G-DS-gSH"/>
                             <constraint firstItem="Wjr-ad-OJk" firstAttribute="top" secondItem="Xv6-ts-hFi" secondAttribute="bottom" constant="8" id="IPs-fJ-UKX"/>
                             <constraint firstAttribute="trailing" secondItem="Wjr-ad-OJk" secondAttribute="trailing" constant="8" id="JJA-6j-fhg"/>
                             <constraint firstItem="Xv6-ts-hFi" firstAttribute="leading" secondItem="xyL-bh-JDo" secondAttribute="leading" constant="8" id="KuK-uL-Cp4"/>
@@ -176,6 +183,7 @@
                             <constraint firstItem="GNr-gU-SXI" firstAttribute="leading" secondItem="Xv6-ts-hFi" secondAttribute="trailing" constant="8" id="jAM-Em-ZNQ"/>
                             <constraint firstItem="dVS-ig-kmI" firstAttribute="top" secondItem="h8j-Cg-5t6" secondAttribute="bottom" priority="999" constant="30" id="kP0-up-6Ga"/>
                             <constraint firstItem="dVS-ig-kmI" firstAttribute="bottom" secondItem="Xv6-ts-hFi" secondAttribute="top" constant="-50" id="pcN-4w-Uvb"/>
+                            <constraint firstItem="IWY-6c-WQm" firstAttribute="top" secondItem="Wjr-ad-OJk" secondAttribute="bottom" constant="8" id="qFb-bG-LEI"/>
                             <constraint firstItem="Wjr-ad-OJk" firstAttribute="top" secondItem="GNr-gU-SXI" secondAttribute="bottom" constant="8" id="utk-dr-gcd"/>
                             <constraint firstAttribute="centerX" secondItem="Wjr-ad-OJk" secondAttribute="centerX" id="x2Q-0f-WH4"/>
                         </constraints>

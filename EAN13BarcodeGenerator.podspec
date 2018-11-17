@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'EAN13BarcodeGenerator'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'The easiest way to generate and show EAN13 barcode'
 
 # This description is used to generate tags and improve search results.

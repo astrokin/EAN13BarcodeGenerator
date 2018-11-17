@@ -178,3 +178,24 @@ NSString *GetNewRandomEAN13BarCode(void)
     return result;
 }
 
+BOOL isValidBarCode(NSString* barCode)
+{
+    BOOL valid = NO;
+    NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
+    NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:barCode];
+    if ([alphaNums isSupersetOfSet:inStringSet] && barCode.length == 13)
+    {
+        //      checksum validation
+        NSInteger sum = 0;
+        for (NSUInteger i = 0; i < 12; i++)
+        {
+            NSUInteger m = (i % 2) == 1 ? 3 : 1;
+            NSUInteger value = [barCode characterAtIndex:i] - 0x30;
+            sum += (m*value);
+        }
+        NSInteger cs = 10 - (sum % 10);
+        if (cs == 10) cs = 0;
+        valid = (cs == ([barCode characterAtIndex:12] - 0x30));
+    }
+    return valid;
+}

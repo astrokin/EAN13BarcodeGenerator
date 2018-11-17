@@ -9,26 +9,12 @@
 #import "BarCodeView.h"
 #import "BarCodeEAN13.h"
 
-static NSString *kInvalidText = @"Invalid barcode!";
-
-static const CGFloat kDigitLabelHeight = 14.0f;
 static const NSInteger kTotlaBarCodeLength = 113; //never change this
 
 @interface BarCodeView () {
-   BOOL binaryCode[kTotlaBarCodeLength];
-   BOOL validBarCode;
-   
-   UILabel *firstDigitLabel;
-   UILabel *manufactureCodeLabel;
-   UILabel *productCodeLabel;
-   UILabel *checkSumLabel; // separate label because of sometime UI need it
+    BOOL binaryCode[kTotlaBarCodeLength];
+    BOOL validBarCode;
 }
-
--(BOOL)isValidBarCode:(NSString*)barCode;
-
--(void)createNumberLabels;
-
--(UILabel*)labelWithWidth:(CGFloat)aWidth andOffset:(CGFloat)offset andValue:(NSString*)aValue;
 
 -(NSString*)firstDigitOfBarCode;
 -(NSString*)manufactureCode;
@@ -41,13 +27,13 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
 
 -(id)initWithFrame:(CGRect)frame
 {
-   NSAssert(frame.size.width >= kTotlaBarCodeLength, @"Incorrect BarCodeView frame.size.width!");
-   self = [super initWithFrame:frame];
-   if (self != nil)
-   {
-       [self commonInit];
-   }
-   return self;
+    NSAssert(frame.size.width >= kTotlaBarCodeLength, @"Incorrect BarCodeView frame.size.width!");
+    self = [super initWithFrame:frame];
+    if (self != nil)
+    {
+        [self commonInit];
+    }
+    return self;
 }
 -(void)awakeFromNib
 {
@@ -57,153 +43,154 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
 }
 -(void)commonInit
 {
-    _bgColor = [UIColor whiteColor];
-    _drawableColor = [UIColor blackColor];
-    [self createNumberLabels];
+    self.bgColor = [UIColor whiteColor];
+    self.drawableColor = [UIColor blackColor];
+    self.font = [UIFont systemFontOfSize:15];
+    self.shouldShowNumbers = YES;
+    self.lettersSpacing = 1;
 }
 -(void)setBarCode:(NSString *)newbarCode
 {
-   if (newbarCode != _barCode)
-   {
-      _barCode = newbarCode;
-      validBarCode = [self isValidBarCode:_barCode];
-      if (validBarCode)
-      {
-         CalculateBarCodeEAN13(_barCode, binaryCode);
-         [self updateLables];
-         [self setNeedsDisplay];
-      }
-   }
-	if (!validBarCode)
-	{
-      memset(binaryCode, 0, sizeof(binaryCode));
-      [self setNeedsDisplay];
-	}
+    if (newbarCode != _barCode)
+    {
+        _barCode = newbarCode;
+        validBarCode = isValidBarCode(_barCode);
+        if (validBarCode)
+        {
+            CalculateBarCodeEAN13(_barCode, binaryCode);
+            [self setNeedsDisplay];
+        }
+    }
+    if (!validBarCode)
+    {
+        memset(binaryCode, 0, sizeof(binaryCode));
+        [self setNeedsDisplay];
+    }
 }
 -(void)drawRect:(CGRect)rect
 {
-   CGContextRef context = UIGraphicsGetCurrentContext();
-   CGContextClearRect(context, rect);
-   if (!validBarCode)
-   {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextClearRect(context, rect);
+    CGContextSetAllowsAntialiasing(context, NO);
+    if (!validBarCode)
+    {
 //    draw error
-      [_bgColor set];
-      CGContextFillRect(context, rect);
-
-      UIFont* font = [UIFont systemFontOfSize:15];
-      UIColor* textColor = [UIColor redColor];
-   
-      NSDictionary* stringAttrs = @{ NSFontAttributeName : font,
-         NSForegroundColorAttributeName : textColor };
-      NSAttributedString* attrStr = [[NSAttributedString alloc]
-         initWithString:kInvalidText attributes:stringAttrs];
-
-      [attrStr drawAtPoint:CGPointMake(3.f, rect.size.height/2-20)];
-      return;
-   }
+        [self.bgColor set];
+        CGContextFillRect(context, rect);
+        
+        UIFont* font = [UIFont systemFontOfSize:15];
+        UIColor* textColor = [UIColor redColor];
+        
+        NSDictionary* stringAttrs = @{ NSFontAttributeName : font,
+                                       NSForegroundColorAttributeName : textColor };
+        NSAttributedString* attrStr = [[NSAttributedString alloc]
+                                       initWithString:@"Invalid barcode!" attributes:stringAttrs];
+        
+        [attrStr drawAtPoint:CGPointMake(3.f, rect.size.height/2-20)];
+        return;
+    }
+    
 //   draw barcode
-	CGContextBeginPath(context);
-    CGContextSetLineWidth(context, UIScreen.mainScreen.scale);
-	for (NSInteger i = 0; i < kTotlaBarCodeLength; i++)
-	{
-        [binaryCode[i] ? _drawableColor : _bgColor set];
-		CGContextMoveToPoint(context, i, 0.0f);
-		CGContextAddLineToPoint(context, i, rect.size.height);
-		CGContextStrokePath(context);
-	}
+    CGContextBeginPath(context);
+    CGFloat lineWidth = rect.size.width / kTotlaBarCodeLength;
+    CGContextSetLineCap(context, kCGLineCapSquare);
+    CGContextSetLineWidth(context, lineWidth);
+    for (NSInteger i = 0; i < kTotlaBarCodeLength; i++)
+    {
+        [binaryCode[i] ? self.drawableColor : self.bgColor set];
+        CGFloat point = i * lineWidth;
+        
+        CGContextMoveToPoint(context, point, 0.0f);
+        CGContextAddLineToPoint(context, point, rect.size.height);
+        CGContextStrokePath(context);
+        
+//        for pixel perfect UI we need to stroke another line no avoid "noise"
+        if (!binaryCode[i]) {
+            CGFloat point = i * lineWidth + 0.5f;
+            CGContextMoveToPoint(context, point, 0.0f);
+            CGContextAddLineToPoint(context, point, rect.size.height);
+            CGContextStrokePath(context);
+        }
+    }
 //   stroke the last line
-   [_bgColor set];
-   CGContextMoveToPoint(context, kTotlaBarCodeLength, 0.0f);
-   CGContextAddLineToPoint(context, kTotlaBarCodeLength, rect.size.height);
-   CGContextStrokePath(context);
-}
--(BOOL)isValidBarCode:(NSString*)barCode
-{
-   BOOL valid = NO;
-   NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-   NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:barCode];
-   if ([alphaNums isSupersetOfSet:inStringSet] && barCode.length == 13)
-   {
-//      checksum validation
-      NSInteger sum = 0;
-      for (NSUInteger i = 0; i < 12; i++)
-      {
-         NSUInteger m = (i % 2) == 1 ? 3 : 1;
-         NSUInteger value = [barCode characterAtIndex:i] - 0x30;
-         sum += (m*value);
-      }
-      NSInteger cs = 10 - (sum % 10);
-      if (cs == 10) cs = 0;
-      valid = (cs == ([barCode characterAtIndex:12] - 0x30));
-      if (!valid) NSLog(@"%@",kInvalidText);
-   }
-   return valid;
-}
+    [self.bgColor set];
+    CGContextMoveToPoint(context, rect.size.width, 0.0f);
+    CGContextAddLineToPoint(context, rect.size.width, rect.size.height);
+    CGContextStrokePath(context);
+    
+//   stroke numbers if needed
+    if (self.shouldShowNumbers) {
+        NSDictionary *stringAttrs = @{
+                                      NSFontAttributeName : self.font,
+                                      NSForegroundColorAttributeName : self.drawableColor,
+                                      NSBackgroundColorAttributeName : self.bgColor
+                                      };
+        NSMutableDictionary *centerAligned = [stringAttrs mutableCopy];
+        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.alignment = NSTextAlignmentCenter;
+        centerAligned[NSParagraphStyleAttributeName] = paragraphStyle;
+//        magic number needed to have perfect strings drawing
+        self.lettersSpacing = 2.5;
+        centerAligned[NSKernAttributeName] = @(self.lettersSpacing);
+        
+        NSMutableDictionary *rightAligned = [stringAttrs mutableCopy];
+        paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.alignment = NSTextAlignmentRight;
+        rightAligned[NSParagraphStyleAttributeName] = paragraphStyle;
+        
+        CGFloat height = self.font.lineHeight;
+        CGFloat originY = rect.size.height - height;
 
--(void)updateLables
-{
-   firstDigitLabel.text = [self firstDigitOfBarCode];
-   manufactureCodeLabel.text = [self manufactureCode];
-   productCodeLabel.text = [self productCode];
-   checkSumLabel.text = [self checkSum];
+//      draw first digit
+        NSAttributedString *firstDigitOfBarCode = [[NSAttributedString alloc] initWithString:self.firstDigitOfBarCode attributes:rightAligned];
+        CGRect firstDigitRect = CGRectMake(0, originY, lineWidth * 8, height);
+        [self drawFilledBackgroundRect:firstDigitRect inContext:context];
+        [self.drawableColor set];
+        [firstDigitOfBarCode drawInRect:firstDigitRect];
+//      draw manufacture code
+        NSAttributedString *manufactureCode = [[NSAttributedString alloc] initWithString:self.manufactureCode attributes:centerAligned];
+        CGRect manufactureRect = CGRectMake(lineWidth * 4, originY, lineWidth * 60, height);
+        [self drawFilledBackgroundRect:manufactureRect inContext:context];
+        [self.drawableColor set];
+        [manufactureCode drawInRect:manufactureRect];
+        
+//      draw product code with checksum
+        NSAttributedString *productCode = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@", [self productCode], [self checkSum]] attributes:centerAligned];
+        CGRect productCodeRect = CGRectMake(lineWidth * 55, originY, lineWidth * 45, height);
+        [self drawFilledBackgroundRect:productCodeRect inContext:context];
+        [self.drawableColor set];
+        [productCode drawInRect:productCodeRect];
+    }
 }
-
--(void)createNumberLabels
-{
-// smoke UI label for better visability
-   CGFloat smokeHeight = 6.0f;
-   UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, self.bounds.size.height-smokeHeight, kTotlaBarCodeLength-1, smokeHeight)];
-   l.backgroundColor = _bgColor;
-   [self addSubview:l];
-//   
-   CGFloat offset = 0.0f;
-   CGFloat labelWidth = 7.0f;
-   firstDigitLabel = [self labelWithWidth:labelWidth andOffset:offset andValue:[self firstDigitOfBarCode]];
-   [self addSubview:firstDigitLabel];
-   offset += 12;
-   manufactureCodeLabel = [self labelWithWidth:labelWidth*6 andOffset:offset andValue:[self manufactureCode]];
-   [self addSubview:manufactureCodeLabel];
-   offset += 46;
-   productCodeLabel = [self labelWithWidth:labelWidth*5 andOffset:offset andValue:[self productCode]];
-   productCodeLabel.textAlignment = NSTextAlignmentRight;
-   [self addSubview:productCodeLabel];
-   offset += 35;
-   checkSumLabel = [self labelWithWidth:labelWidth andOffset:offset andValue:[self checkSum]];
-   [self addSubview:checkSumLabel];
-}
--(UILabel*)labelWithWidth:(CGFloat)aWidth andOffset:(CGFloat)offset andValue:(NSString*)aValue
-{
-   UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(offset,
-   self.bounds.size.height - kDigitLabelHeight, aWidth, kDigitLabelHeight)];
-   label.backgroundColor = _bgColor;
-   label.textColor = _drawableColor;
-   label.textAlignment = NSTextAlignmentCenter;
-   label.font = [UIFont boldSystemFontOfSize:kDigitLabelHeight-4];
-   label.text = aValue;
-   return label;
+-(void)drawFilledBackgroundRect:(CGRect)rect inContext:(CGContextRef)context {
+    const CGFloat *colors = CGColorGetComponents(self.bgColor.CGColor);
+    CGContextSetRGBFillColor(context, colors[0], colors[1], colors[2], colors[3]);
+    CGContextSetRGBStrokeColor(context, colors[0], colors[1], colors[2], colors[3]);
+    CGContextFillRect(context, rect);
 }
 -(NSString*)firstDigitOfBarCode
 {
-   return [self.barCode substringToIndex:1];
+    return [self.barCode substringToIndex:1];
 }
 -(NSString*)manufactureCode
 {
-   return [self.barCode substringWithRange:NSMakeRange(1, 6)];
+    return [self.barCode substringWithRange:NSMakeRange(1, 6)];
 }
 -(NSString*)productCode
 {
-   return [self.barCode substringWithRange:NSMakeRange(7, 5)];
+    return [self.barCode substringWithRange:NSMakeRange(7, 5)];
 }
 - (NSString *)checkSum
 {
-   return [_barCode substringWithRange:NSMakeRange(12, 1)];
+    return [self.barCode substringWithRange:NSMakeRange(12, 1)];
 }
 -(void)setShouldShowNumbers:(BOOL)shouldShowNumbers
 {
-   _shouldShowNumbers = shouldShowNumbers;
-   for (UILabel *label in self.subviews)
-   {
-      if ([label isKindOfClass:[UILabel class]]) label.hidden = !shouldShowNumbers;
-   }
+    _shouldShowNumbers = shouldShowNumbers;
+    [self setNeedsDisplay];
+}
+-(void)setFont:(UIFont *)font {
+    _font = font;
+    [self setNeedsDisplay];
 }
 @end

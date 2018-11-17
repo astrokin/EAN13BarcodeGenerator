@@ -12,7 +12,7 @@
 @import EAN13BarcodeGenerator;
 
 static const CGRect kLabelFrame = {{0.0, 120.0},{320.0, 30.0}};
-static const CGRect kBarCodeFrame = {{103.0, 155.0},{113.0, 100.0}};
+static const CGRect kBarCodeFrame = {{103.0, 155.0},{250.0, 100.0}};
 static const CGRect kButtonFrame = {{85.0, 320.0},{150.0, 30.0}};
 static const CGRect kTextFieldFrame = {{60.0, 270.0},{200.0, 30.0}};
 

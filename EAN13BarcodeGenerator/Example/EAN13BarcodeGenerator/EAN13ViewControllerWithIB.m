@@ -25,6 +25,9 @@
 - (IBAction)applyScale:(UISlider *)sender {
     _barcodeView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f/sender.value, 1.0f/sender.value);
 }
+- (IBAction)showNumbersValueChanged:(UISwitch *)sender {
+    _barcodeView.shouldShowNumbers = sender.isOn;
+}
 
 - (IBAction)generateAction:(id)sender {
     if (_textField.text.length == 13)

@@ -9,3 +9,4 @@
 
 extern void CalculateBarCodeEAN13(NSString *barCodeString, BOOL *buffer);
 extern NSString *GetNewRandomEAN13BarCode(void);
+extern BOOL isValidBarCode(NSString* barCode);

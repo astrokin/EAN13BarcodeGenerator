@@ -14,7 +14,11 @@
 
 @property (nonatomic, strong) UIColor * drawableColor; //default black
 @property (nonatomic, strong) UIColor *bgColor; // default white
-
+@property (nonatomic, strong) UIFont *font; // default system 15
+//default width / 113
+//this coeficient allows you to fit digits into width of your barcode view
+@property (nonatomic, assign) CGFloat lettersSpacing;
 @property (nonatomic, assign) BOOL shouldShowNumbers; //default YES
+
 
 @end

@@ -43,10 +43,9 @@
 /* Begin PBXFileReference section */
 		04B7C5C15886A075ADBF7446F77664A2 /* Pods-EAN13BarcodeGenerator_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EAN13BarcodeGenerator_Tests-resources.sh"; sourceTree = "<group>"; };
 		1B8C62212D122317B8416956F617779C /* Pods-EAN13BarcodeGenerator_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-EAN13BarcodeGenerator_Example-dummy.m"; sourceTree = "<group>"; };
-		1E5DF731B7E45C67BB6FA2D10EDEB87B /* Pods_EAN13BarcodeGenerator_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_EAN13BarcodeGenerator_Example.framework; path = "Pods-EAN13BarcodeGenerator_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E5DF731B7E45C67BB6FA2D10EDEB87B /* Pods_EAN13BarcodeGenerator_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EAN13BarcodeGenerator_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22E139B3EDBD4792F6DDC85EDE7C7D3F /* Pods-EAN13BarcodeGenerator_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EAN13BarcodeGenerator_Example-frameworks.sh"; sourceTree = "<group>"; };
 		231908D268051D0BA75487CE1FBDA604 /* Pods-EAN13BarcodeGenerator_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EAN13BarcodeGenerator_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		2A39DD98D67A71C4D3DF900665311895 /* EAN13BarcodeGenerator.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = EAN13BarcodeGenerator.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		352B9BB729A8DA2694AC153CE9FD3D00 /* Pods-EAN13BarcodeGenerator_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EAN13BarcodeGenerator_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		391FFBC7CE972A113ED0DA27D6CC6E3E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BFCAC4E9BDFE5B8AFD0B0596102398B /* Pods-EAN13BarcodeGenerator_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-EAN13BarcodeGenerator_Tests.modulemap"; sourceTree = "<group>"; };
@@ -60,22 +59,20 @@
 		6502E9ACD7935BAFE34C6B2A40E4FE5B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66BC10F34E9291F0016F1CC84BF1DC56 /* EAN13BarcodeGenerator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EAN13BarcodeGenerator-dummy.m"; sourceTree = "<group>"; };
 		6AF8309D9BF55BA4CE7E3F572F90BD1B /* Pods-EAN13BarcodeGenerator_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EAN13BarcodeGenerator_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		78944063FD8FB554B0438923FE18E711 /* EAN13BarcodeGenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EAN13BarcodeGenerator.framework; path = EAN13BarcodeGenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		78944063FD8FB554B0438923FE18E711 /* EAN13BarcodeGenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EAN13BarcodeGenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7967FA29D7BED897B6B7BF8685B5FF59 /* Pods-EAN13BarcodeGenerator_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-EAN13BarcodeGenerator_Tests-dummy.m"; sourceTree = "<group>"; };
-		7A9ECB15CA294C6627F400CCE0422ADF /* BarCodeView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BarCodeView.m; path = EAN13BarcodeGenerator/Classes/BarCodeView.m; sourceTree = "<group>"; };
+		7A9ECB15CA294C6627F400CCE0422ADF /* BarCodeView.m */ = {isa = PBXFileReference; includeInIndex = 1; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; name = BarCodeView.m; path = EAN13BarcodeGenerator/Classes/BarCodeView.m; sourceTree = "<group>"; };
 		7FAB5ABD13C303996598F95FB8EED42F /* BarCodeView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BarCodeView.h; path = EAN13BarcodeGenerator/Classes/BarCodeView.h; sourceTree = "<group>"; };
-		82554266E7E03C020C7E288EEE234979 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		8F95ED36FB13AADE7EC68853D9AEB284 /* Pods_EAN13BarcodeGenerator_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_EAN13BarcodeGenerator_Tests.framework; path = "Pods-EAN13BarcodeGenerator_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F95ED36FB13AADE7EC68853D9AEB284 /* Pods_EAN13BarcodeGenerator_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EAN13BarcodeGenerator_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		907FFC8DEF93BD656AD7D6133786069C /* Pods-EAN13BarcodeGenerator_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EAN13BarcodeGenerator_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		908E902E026C5C22904CF9014A5604AD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A8A834939A2189588550D61696AA9734 /* Pods-EAN13BarcodeGenerator_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EAN13BarcodeGenerator_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		AC007575497C31693468EACCA2A271A3 /* Pods-EAN13BarcodeGenerator_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-EAN13BarcodeGenerator_Tests-umbrella.h"; sourceTree = "<group>"; };
 		AD40445B64B725E509A2BD2B3F97FA2F /* Pods-EAN13BarcodeGenerator_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EAN13BarcodeGenerator_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		B3BC438A46F40953C392A7201189A9D5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC2C02191C153C1554B35DEE8B2D09D4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		BC8D15C6ED8D6D66585B3B8F33E10EB7 /* EAN13BarcodeGenerator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EAN13BarcodeGenerator-umbrella.h"; sourceTree = "<group>"; };
-		D0838F579180BF7EE9B19452D588EDF1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		D449C502C8633C2F7794D7F18C5B1882 /* Pods-EAN13BarcodeGenerator_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EAN13BarcodeGenerator_Example-resources.sh"; sourceTree = "<group>"; };
 		E3D611E1DC53131AB19E12B036F0319C /* BarCodeEAN13.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BarCodeEAN13.m; path = EAN13BarcodeGenerator/Classes/BarCodeEAN13.m; sourceTree = "<group>"; };
 		E945C0BE636C8B82DEECEF2EA9B5B6C3 /* Pods-EAN13BarcodeGenerator_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EAN13BarcodeGenerator_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -147,16 +144,6 @@
 			);
 			sourceTree = "<group>";
 		};
-		B8326362F22925CB42A0E633373A4860 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				2A39DD98D67A71C4D3DF900665311895 /* EAN13BarcodeGenerator.podspec */,
-				D0838F579180BF7EE9B19452D588EDF1 /* LICENSE */,
-				82554266E7E03C020C7E288EEE234979 /* README.md */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
 		DBE22BBD20E8393C23F8E37A6FF5F810 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,7 +193,6 @@
 				E3D611E1DC53131AB19E12B036F0319C /* BarCodeEAN13.m */,
 				7FAB5ABD13C303996598F95FB8EED42F /* BarCodeView.h */,
 				7A9ECB15CA294C6627F400CCE0422ADF /* BarCodeView.m */,
-				B8326362F22925CB42A0E633373A4860 /* Pod */,
 				DBE22BBD20E8393C23F8E37A6FF5F810 /* Support Files */,
 			);
 			name = EAN13BarcodeGenerator;
