@@ -146,7 +146,7 @@ static NSInteger* InitializeBarCode(NSString *barCodeString)
 void CalculateBarCodeEAN13(NSString *barCodeString, BOOL *buffer)
 {
 	NSInteger *barCode = InitializeBarCode(barCodeString);
-   BOOL *bp = buffer;
+    BOOL *bp = buffer;
 	ShiftCopyBoolArray(bp, bQuiteZone, 9);
 	ShiftCopyBoolArray(bp, bLeadTrailer, 3);
 	NSInteger countryCode = barCode[1];
@@ -154,7 +154,7 @@ void CalculateBarCodeEAN13(NSString *barCodeString, BOOL *buffer)
 	bp = FillManufactureCode(bp, barCode);
 	ShiftCopyBoolArray(bp, bSeporator, 5);
 	bp = FillProductCode(bp, barCode);
-   bp = FillCheckSumm(bp, barCode);
+    bp = FillCheckSumm(bp, barCode);
 	ShiftCopyBoolArray(bp, bLeadTrailer, 3);
 	ShiftCopyBoolArray(bp, bQuiteZone, 9);
 	

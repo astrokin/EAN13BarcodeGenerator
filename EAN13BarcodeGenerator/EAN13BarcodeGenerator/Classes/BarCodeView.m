@@ -17,8 +17,8 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
 @interface BarCodeView () {
    CGFloat horizontalOffest;
 
-	BOOL binaryCode[kTotlaBarCodeLength];
-	BOOL validBarCode;
+   BOOL binaryCode[kTotlaBarCodeLength];
+   BOOL validBarCode;
    
    UILabel *firstDigitLabel;
    UILabel *manufactureCodeLabel;
@@ -30,8 +30,7 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
 
 -(void)createNumberLabels;
 
--(UILabel*)labelWithWidth:(CGFloat)aWidth andOffset:(CGFloat)offset
-   andValue:(NSString*)aValue;
+-(UILabel*)labelWithWidth:(CGFloat)aWidth andOffset:(CGFloat)offset andValue:(NSString*)aValue;
 
 -(NSString*)firstDigitOfBarCode;
 -(NSString*)manufactureCode;
@@ -70,29 +69,29 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
    if (newbarCode != _barCode)
    {
       _barCode = newbarCode;
-		validBarCode = [self isValidBarCode:_barCode];
+      validBarCode = [self isValidBarCode:_barCode];
       if (validBarCode)
       {
-			CalculateBarCodeEAN13(_barCode, binaryCode);
+         CalculateBarCodeEAN13(_barCode, binaryCode);
          [self updateLables];
          [self setNeedsDisplay];
       }
    }
 	if (!validBarCode)
 	{
-		memset(binaryCode, 0, sizeof(binaryCode));
+      memset(binaryCode, 0, sizeof(binaryCode));
       [self setNeedsDisplay];
 	}
 }
 -(void)drawRect:(CGRect)rect
 {
-   CGContextRef c = UIGraphicsGetCurrentContext();
-   CGContextClearRect(c, rect);
+   CGContextRef context = UIGraphicsGetCurrentContext();
+   CGContextClearRect(context, rect);
    if (!validBarCode)
    {
 //    draw error
       [_bgColor set];
-      CGContextFillRect(c, rect);
+      CGContextFillRect(context, rect);
 
       UIFont* font = [UIFont systemFontOfSize:15];
       UIColor* textColor = [UIColor redColor];
@@ -106,28 +105,26 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
       return;
    }
 //   draw barcode
-	CGContextBeginPath(c);
-    CGContextSetLineWidth(c, UIScreen.mainScreen.scale);
+	CGContextBeginPath(context);
+    CGContextSetLineWidth(context, UIScreen.mainScreen.scale);
 	for (NSInteger i = 0; i < kTotlaBarCodeLength; i++)
 	{
-   
-      [binaryCode[i] ? _drawableColor : _bgColor set];
-		CGContextMoveToPoint(c, i+horizontalOffest, 0.0f);
-		CGContextAddLineToPoint(c, i+horizontalOffest, self.bounds.size.height);
-		CGContextStrokePath(c);
+        [binaryCode[i] ? _drawableColor : _bgColor set];
+		CGContextMoveToPoint(context, i+horizontalOffest, 0.0f);
+		CGContextAddLineToPoint(context, i+horizontalOffest, rect.size.height);
+		CGContextStrokePath(context);
 	}
 //   stroke the last line
    [_bgColor set];
-   CGContextMoveToPoint(c, kTotlaBarCodeLength, 0.0f);
-   CGContextAddLineToPoint(c, kTotlaBarCodeLength, self.bounds.size.height);
-   CGContextStrokePath(c);
+   CGContextMoveToPoint(context, kTotlaBarCodeLength, 0.0f);
+   CGContextAddLineToPoint(context, kTotlaBarCodeLength, rect.size.height);
+   CGContextStrokePath(context);
 }
 -(BOOL)isValidBarCode:(NSString*)barCode
 {
    BOOL valid = NO;
    NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-   NSCharacterSet *inStringSet = [NSCharacterSet
-		characterSetWithCharactersInString:barCode];
+   NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:barCode];
    if ([alphaNums isSupersetOfSet:inStringSet] && barCode.length == 13)
    {
 //      checksum validation
@@ -177,11 +174,10 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
    checkSumLabel = [self labelWithWidth:labelWidth andOffset:offset andValue:[self checkSum]];
    [self addSubview:checkSumLabel];
 }
--(UILabel*)labelWithWidth:(CGFloat)aWidth andOffset:(CGFloat)offset
-   andValue:(NSString*)aValue
+-(UILabel*)labelWithWidth:(CGFloat)aWidth andOffset:(CGFloat)offset andValue:(NSString*)aValue
 {
    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(offset,
-      self.bounds.size.height - kDigitLabelHeight, aWidth, kDigitLabelHeight)];
+   self.bounds.size.height - kDigitLabelHeight, aWidth, kDigitLabelHeight)];
    label.backgroundColor = _bgColor;
    label.textColor = _drawableColor;
    label.textAlignment = NSTextAlignmentCenter;
@@ -207,7 +203,7 @@ static const NSInteger kTotlaBarCodeLength = 113; //never change this
 }
 -(void)setShouldShowNumbers:(BOOL)shouldShowNumbers
 {
-    _shouldShowNumbers = shouldShowNumbers;
+   _shouldShowNumbers = shouldShowNumbers;
    for (UILabel *label in self.subviews)
    {
       if ([label isKindOfClass:[UILabel class]]) label.hidden = !shouldShowNumbers;
